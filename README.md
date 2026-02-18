@@ -1,49 +1,33 @@
 # ChatGPT Prompt PopClip Extension
 
-一个支持“先补充问题，再发送”的 ChatGPT PopClip 扩展。
+无弹窗版本：划词后点击图标，直接跳转 ChatGPT 并自动填充模板。
 
-## 先看这里（怎么用）
+## 用法
 
-1. 在 [Releases](https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases) 下载 `ChatGPTPrompt.popclipextz` 并双击安装。
-2. 在任意应用里划词，点击 PopClip 的 ChatGPT 图标。
-3. 在弹窗输入补充问题，按回车或点“发送”。
-4. 插件会自动拼接结构化提示词，并跳转到 ChatGPT。
-5. 到 ChatGPT 页面后手动点击发送（或按回车）。
-
-## 下载
-
-- Release 页面：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases>
-- 稳定版（手动发送）（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.5/ChatGPTPrompt.popclipextz>
-
-## 提示词格式
+1. 下载并安装 `ChatGPTPrompt.popclipextz`。
+2. 在任意应用中划词，点击 ChatGPT 图标。
+3. ChatGPT 会预填以下内容：
 
 ```text
 【原文】
 <选中文本>
 
 【问题】
-<补充问题>
 ```
 
-## 相比旧插件（73pbck）的优势
+4. 在 `【问题】` 下自行输入，再手动发送。
 
-1. 发送前有“补问对话框”，不是只把原文扔过去。
-2. 自动输出结构化提示词，长文本场景更清晰。
-3. 保留 `https://chatgpt.com/?q=` 的直发路径，使用成本低。
+## 行为说明
 
-## 稳定性与兜底
+- 不再弹输入框。
+- 不自动发送。
+- 同时复制模板到剪贴板，作为兜底。
+- 在 PopClip 设置窗口中禁用触发（避免误触）。
 
-- 主路径：优先唤起 Chrome 并新开标签跳转 ChatGPT。
-- 不执行自动发送，避免账号/页面状态造成误触发。
-- 内容也会写入剪贴板；若页面未自动带上文本，可直接粘贴发送。
+## 下载
 
-## 官方插件列表状态
+- Releases: <https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases>
 
-- 已提交官方目录 PR（OPEN）：<https://github.com/pilotmoon/PopClip-Extensions/pull/1323>
-- 在官方合并前，请先从本仓库 Releases 安装。
+## 官方目录 PR
 
-## 目录
-
-- `ChatGPTPrompt.popclipext/Config.json`
-- `ChatGPTPrompt.popclipext/chatgpt.applescript`
-- `ChatGPTPrompt.popclipext/Readme.md`
+- <https://github.com/pilotmoon/PopClip-Extensions/pull/1323>

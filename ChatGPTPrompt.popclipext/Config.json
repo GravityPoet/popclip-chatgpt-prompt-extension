@@ -1,7 +1,7 @@
 {
   "name": "ChatGPT Prompt",
   "identifier": "com.gravitypoet.popclip.extension.chatgpt-prompt",
-  "description": "Ask a follow-up question on selected text and send it directly to ChatGPT.",
+  "description": "Open ChatGPT with a prefilled template from selected text.",
   "icon": "square filled scale=85 iconify:simple-icons:openai",
   "title": "\u200B",
   "popclipVersion": 4586,
@@ -12,5 +12,8 @@
   "requirements": [
     "text"
   ],
-  "applescriptFile": "chatgpt.applescript"
+  "excludedApps": [
+    "com.pilotmoon.popclip"
+  ],
+  "javascript": "const text=((popclip.input&&popclip.input.text)?popclip.input.text:'').trim(); if(!text){return;} const prompt='【原文】\\n'+text+'\\n\\n【问题】\\n'; popclip.copyText(prompt); popclip.openUrl('https://chatgpt.com/?q='+encodeURIComponent(prompt));"
 }
