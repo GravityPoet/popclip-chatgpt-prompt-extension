@@ -7,7 +7,7 @@ on run
   set trimmedQuestion to my trimText(userQuestion)
   if trimmedQuestion is "" then error "问题不能为空。" number 701
 
-  set finalPrompt to "【原文】" & return & selectedText & return & return & "【问题】 " & trimmedQuestion
+  set finalPrompt to "【原文】" & return & selectedText & return & return & "【问题】" & return & trimmedQuestion
   set the clipboard to finalPrompt
   set encodedPrompt to my urlEncode(finalPrompt)
   set targetURL to "https://chatgpt.com/?q=" & encodedPrompt
@@ -39,19 +39,36 @@ on urlEncode(rawText)
 end urlEncode
 
 on tryAutoSendInChrome()
-  delay 1.2
+  set sent to false
+  set jsCode to "(function(){var input=document.querySelector('textarea, div[contenteditable=\\'true\\']');if(!input){return 'wait:no_input';}var text='';if(typeof input.value==='string'){text=input.value;}else{text=(input.innerText||input.textContent||'');}if(!text||text.trim().length===0){return 'wait:empty';}input.focus();var btn=document.querySelector('button[data-testid=\\'send-button\\'], button[aria-label*=\\'Send\\'], button[aria-label*=\\'发送\\']');if(btn&&!btn.disabled){btn.click();return 'sent:click';}var evt={key:'Enter',code:'Enter',which:13,keyCode:13,bubbles:true,cancelable:true};input.dispatchEvent(new KeyboardEvent('keydown',evt));input.dispatchEvent(new KeyboardEvent('keypress',evt));input.dispatchEvent(new KeyboardEvent('keyup',evt));return 'sent:key';})();"
+
+  repeat with i from 1 to 30
+    delay 0.35
+    try
+      tell application "Google Chrome"
+        activate
+        set jsResult to execute front window's active tab javascript jsCode
+      end tell
+      if jsResult is not missing value then
+        if jsResult starts with "sent:" then
+          set sent to true
+          exit repeat
+        end if
+      end if
+    on error
+      -- Continue polling; page may still be loading.
+    end try
+  end repeat
+
+  if sent then return
+
   try
-    tell application "Google Chrome"
-      activate
-      tell front window's active tab to execute javascript "var t=document.querySelector('textarea'); if(t){t.focus(); true;} else {false;}"
-    end tell
-    delay 0.15
     tell application "System Events"
       if UI elements enabled is false then error "辅助功能权限未开启。" number 710
       tell process "Google Chrome" to set frontmost to true
       key code 36
     end tell
   on error
-    display notification "已填充到 ChatGPT。若未自动发送，请手动按回车（或先给 PopClip/终端辅助功能权限）。" with title "ChatGPT Prompt"
+    display notification "已填充到 ChatGPT。若未自动发送，请手动按回车。" with title "ChatGPT Prompt"
   end try
 end tryAutoSendInChrome

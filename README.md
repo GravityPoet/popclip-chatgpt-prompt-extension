@@ -8,12 +8,12 @@
 2. 在任意应用里划词，点击 PopClip 的 ChatGPT 图标。
 3. 在弹窗输入补充问题，按回车或点“发送”。
 4. 插件会自动拼接结构化提示词，并跳转到 ChatGPT。
-5. 试验版会尝试自动按 Enter 发送（需辅助功能权限）。
+5. 试验版会优先在页面内点击发送按钮，并在必要时回退为按 Enter 发送。
 
 ## 下载
 
 - Release 页面：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases>
-- 自动发送试验版（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.3/ChatGPTPrompt.popclipextz>
+- 自动发送试验版（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.4/ChatGPTPrompt.popclipextz>
 - 上一稳定版（手动回车）（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.2/ChatGPTPrompt.popclipextz>
 
 ## 提示词格式
@@ -35,7 +35,8 @@
 
 - 主路径：优先唤起 Chrome 并新开标签跳转 ChatGPT。
 - 试验能力：自动发送版会在跳转后模拟按下 Enter。
-- 权限要求：需在 macOS「系统设置 -> 隐私与安全性 -> 辅助功能」里允许 PopClip（必要时也允许终端）。
+- 试验能力：自动发送版会先尝试页面内点击发送按钮，失败时再回退到 Enter。
+- 权限要求：仅当进入“按键回退路径”时，才需要 macOS 辅助功能权限。
 - 回退路径：若自动发送失败，内容仍会写入剪贴板，可手动回车发送。
 
 ## 官方插件列表状态
