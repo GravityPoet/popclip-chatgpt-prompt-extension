@@ -7,7 +7,8 @@ A PopClip extension that adds a follow-up question dialog before sending selecte
 1. Select text in any app.
 2. Click the ChatGPT icon in PopClip.
 3. Enter your follow-up question in the popup dialog.
-4. ChatGPT opens with a prefilled prompt and sends via `q` URL flow.
+4. ChatGPT opens with a prefilled prompt via `q` URL flow.
+5. Experimental build tries to auto-send by pressing Enter.
 
 ## Prompt format
 
@@ -15,8 +16,7 @@ A PopClip extension that adds a follow-up question dialog before sending selecte
 【原文】
 <selected text>
 
-【问题】
-<your question>
+【问题】 <your question>
 ```
 
 ## Advantages vs ChatGPT Website extension (73pbck)
@@ -30,6 +30,7 @@ Compared with [ChatGPT Website](https://www.popclip.app/extensions/x/73pbck):
 ## Requirements
 
 - ChatGPT web access (`https://chatgpt.com/`)
+- macOS Accessibility permission for PopClip (and optionally Terminal) to enable auto-send key press
 
 ## Author
 
