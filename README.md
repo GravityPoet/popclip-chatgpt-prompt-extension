@@ -8,13 +8,12 @@
 2. 在任意应用里划词，点击 PopClip 的 ChatGPT 图标。
 3. 在弹窗输入补充问题，按回车或点“发送”。
 4. 插件会自动拼接结构化提示词，并跳转到 ChatGPT。
-5. 试验版会优先在页面内点击发送按钮，并在必要时回退为按 Enter 发送。
+5. 到 ChatGPT 页面后手动点击发送（或按回车）。
 
 ## 下载
 
 - Release 页面：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases>
-- 自动发送试验版（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.4/ChatGPTPrompt.popclipextz>
-- 上一稳定版（手动回车）（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.2/ChatGPTPrompt.popclipextz>
+- 稳定版（手动发送）（2026-02-18）：<https://github.com/GravityPoet/popclip-chatgpt-prompt-extension/releases/download/v2026.02.18.5/ChatGPTPrompt.popclipextz>
 
 ## 提示词格式
 
@@ -22,7 +21,8 @@
 【原文】
 <选中文本>
 
-【问题】 <补充问题>
+【问题】
+<补充问题>
 ```
 
 ## 相比旧插件（73pbck）的优势
@@ -34,10 +34,8 @@
 ## 稳定性与兜底
 
 - 主路径：优先唤起 Chrome 并新开标签跳转 ChatGPT。
-- 试验能力：自动发送版会在跳转后模拟按下 Enter。
-- 试验能力：自动发送版会先尝试页面内点击发送按钮，失败时再回退到 Enter。
-- 权限要求：仅当进入“按键回退路径”时，才需要 macOS 辅助功能权限。
-- 回退路径：若自动发送失败，内容仍会写入剪贴板，可手动回车发送。
+- 不执行自动发送，避免账号/页面状态造成误触发。
+- 内容也会写入剪贴板；若页面未自动带上文本，可直接粘贴发送。
 
 ## 官方插件列表状态
 
